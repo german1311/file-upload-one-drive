@@ -4,12 +4,12 @@ Upload to OneDrive Share Point, to SharePoint Online using the `spsave` package.
 
 ## Inputs
 
-`site_url`: Destination SPO site URL  
-`clientId`: Client Id
-`clientSecret`: Client Secret
-`realm`: Tenant Id
-`destination_path`: Relative destination path on SPO site. If path does not exist, it will be created.  
-`source_path`: Source file path(s) to be uploaded to SPO. Separate multiple files using a semicolon `;`.  
+`SITE_URL`: Destination SPO site URL  
+`CLIENT_ID`: Client Id
+`CLIENT_SECRET`: Client Secret
+`REALM`: Tenant Id
+`DESTINATION_PATH`: Relative destination path on SPO site. If path does not exist, it will be created.  
+`SOURCE_PATH`: Source file path(s) to be uploaded to SPO. Separate multiple files using a semicolon `;`.  
 
 ## Assumptions
 
@@ -22,16 +22,18 @@ Upload to OneDrive Share Point, to SharePoint Online using the `spsave` package.
 ```yaml
 ...
 
-uses: file-upload-one-drive/file-upload-one-drive@v1
-with:
-  site_url: https://domain.sharepoint.com/sites/my-site
-  clientId: ${{ secrets.SPO_USERNAME }}
-  clientSecret: ${{ secrets.SPO_PASSWORD }}
-  realm: '1231231231231'
-  destination_path: 'Shared Documents'
-  source_path: dist/my-file.txt
-  # or for multiple files
-  # source_path: dist/my-file1.txt;dist/my-file2.txt
+
+- name: OD SP File Upload
+  uses: german1311/file-upload-one-drive@v0.91
+  with:
+    SITE_URL: https://domain.sharepoint.com/sites/my-site
+    CLIENT_ID: ${{ secrets.SPO_USERNAME }}
+    CLIENT_SECRET: ${{ secrets.SPO_PASSWORD }}
+    REALM: '1231231231231'
+    DESTINATION_PATH: 'Shared Documents'
+    SOURCE_PATH: dist/my-file.txt
+    # or for multiple files
+    # SOURCE_PATH: dist/my-file1.txt;dist/my-file2.txt
 
 ...
 ```
